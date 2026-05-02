@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,5 +37,9 @@ Route::get('/infirmier', function () {
 Route::get('/patient', function () {
     return "Bienvenue Patient";
 })->middleware(['auth', 'role:patient']);
+
+Route::middleware(['auth', 'role:admin,secretaire'])->group(function () {
+    Route::resource('patients', PatientController::class);
+});
 
 require __DIR__.'/auth.php';
