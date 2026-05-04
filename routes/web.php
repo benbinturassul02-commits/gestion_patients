@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\RendezvousController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -40,6 +41,7 @@ Route::get('/patient', function () {
 
 Route::middleware(['auth', 'role:admin,secretaire'])->group(function () {
     Route::resource('patients', PatientController::class);
+    Route::resource('rendezvous', RendezvousController::class);
 });
 
 require __DIR__.'/auth.php';

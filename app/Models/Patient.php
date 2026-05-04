@@ -19,4 +19,9 @@ class Patient extends Model
     {
         return Carbon::parse($this->date_naissance)->age;
     }
+
+    public function rendezvouses()
+    {
+        return $this->hasMany(Rendezvous::class);
+    }
 }
